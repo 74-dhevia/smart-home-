@@ -44,7 +44,7 @@ public:
     }
 
     void performAction() override {
-        cout << "[" << deviceName << "] Enter brightness (0–100): ";
+        cout << "[" << deviceName << "] Enter brightness (0â€“100): ";
         cin >> brightness;
         if (brightness < 0 || brightness > 100)
             throw out_of_range("Brightness out of range!");
@@ -60,7 +60,7 @@ public:
     }
 
     void saveToFile(ofstream& out) const override {
-        out << "SmartLight " << deviceID << " " << deviceName << " " << status
+        cout << "SmartLight " << deviceID << " " << deviceName << " " << status
             << " " << location << " " << brightness << " " << color << endl;
     }
 };
@@ -74,13 +74,13 @@ public:
     SmartThermostat(string id, string name, string loc, float temp, string m)
         : SmartDevice(id, name, loc), temperature(temp), mode(m) {
         if (temp < 16 || temp > 30)
-            throw out_of_range("Temperature must be between 16°C and 30°C.");
+            throw out_of_range("Temperature must be between 16Â°C and 30Â°C.");
         if (mode != "Cool" && mode != "Heat")
             throw invalid_argument("Mode must be Cool or Heat.");
     }
 
     void performAction() override {
-        cout << "[" << deviceName << "] Enter temperature (16–30 °C): ";
+        cout << "[" << deviceName << "] Enter temperature (16â€“30 Â°C): ";
         cin >> temperature;
         if (temperature < 16 || temperature > 30)
             throw out_of_range("Temperature out of range!");
@@ -90,12 +90,12 @@ public:
         if (mode != "Cool" && mode != "Heat")
             throw invalid_argument("Invalid mode!");
 
-        cout << "Thermostat set to " << temperature << "°C and mode " << mode << endl;
+        cout << "Thermostat set to " << temperature << "Â°C and mode " << mode << endl;
     }
 
     void displayStatus() const override {
         SmartDevice::displayStatus();
-        cout << "Temperature: " << temperature << "°C, Mode: " << mode << endl;
+        cout << "Temperature: " << temperature << "Â°C, Mode: " << mode << endl;
     }
 
     void saveToFile(ofstream& out) const override {
